@@ -6,18 +6,18 @@ all: c
 # Compiles and makes bin if needed
 c: src/main.c src/bat.c
 	mkdir -p bin
-	$(CC) -o bin/main src/main.c src/bat.c -lm
+	$(CC) -o bin/howami src/main.c src/bat.c -lm
 
 # run
-r: bin/main
-	bin/main
+r: bin/howami
+	bin/howami
 
 # compile and run
 cr: all r
 
 # run with a debugger
 rd: all
-	gdb bin/main
+	gdb bin/howami
 
 # compile and run with a debugger
 crd: all rd

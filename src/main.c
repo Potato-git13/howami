@@ -4,7 +4,7 @@
 // external function for battery percentage
 extern int bat_perc();
 const char *bat_rating(int bat_percent);
-// when i gather all of the system info and all the ratings i will output the full message
+// when i gather all of the system info and all the ratings i will output the full total feeling message
 int total_feeling_rate = 0;
 
 int main(){

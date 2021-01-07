@@ -10,7 +10,7 @@ const char *ram_total(){
     size_t n = 0;
     char *line = NULL;
     char *p;
-
+    // find a specific line
     while (getline(&line, &n, fp) > 0) {
         if (strstr(line, "MemTotal")) {
             fclose(fp);
@@ -23,7 +23,7 @@ const char *ram_total(){
         }
     }
     free(line);
-    return "err";
+    return line;
 }
 
 const char *ram_av(){
@@ -32,7 +32,7 @@ const char *ram_av(){
     size_t n = 0;
     char *line = NULL;
     char *p;
-
+    // find a specific line
     while (getline(&line, &n, fp) > 0) {
         if (strstr(line, "MemAvailable")) {
             fclose(fp);
@@ -54,7 +54,7 @@ const char *ram_cached(){
     size_t n = 0;
     char *line = NULL;
     char *p;
-
+    // find a specific line
     while (getline(&line, &n, fp) > 0) {
         if (strstr(line, "Cached")) {
             fclose(fp);
@@ -76,7 +76,7 @@ const char *ram_buffer(){
     size_t n = 0;
     char *line = NULL;
     char *p;
-
+    // find a specific line
     while (getline(&line, &n, fp) > 0) {
         if (strstr(line, "Buffers")) {
             fclose(fp);

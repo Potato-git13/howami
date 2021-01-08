@@ -8,9 +8,11 @@ extern const char *ram_total();
 extern const char *ram_av();
 extern const char *ram_cached();
 extern const char *ram_buffer();
+extern int disk_perc(const char *path);
 
 const char *bat_rating(int bat_percent);
 const char *ram_rating(int ram_percent);
+const char *disk_rating(int disk_percent);
 // when i gather all of the system info and all the ratings i will output the full total feeling message
 int total_feeling_rate = 0;
 
@@ -26,8 +28,10 @@ int main(){
     // main will print out all of the info and the feeling. (when it's done the percentages and all of that will not be displayed)
     //printf("BAT: %d%%\n", bat_perc());
     //printf("RAM perc: %d%%\n", ram_used_perc);
+    //printf("%d\n", disk_perc("/"));
     printf("%s", bat_rating(bat_perc()));
     printf("%s", ram_rating(ram_used_perc));
+    printf("%s", disk_rating(disk_perc("/")));
     printf("\n");
     return 0;
 }
@@ -80,4 +84,29 @@ const char *ram_rating(int ram_perc){
         total_feeling_rate += 5;
     }
     return ram_feeling;
+}
+
+const char *disk_rating(int disk_percent){
+    static char disk_feeling[43];
+    if(disk_percent==100){
+        strcpy(disk_feeling, "Nothing goes inside me anymore! I'm full. ");
+        total_feeling_rate += 1;
+    }
+    else if (disk_percent<=99 && disk_percent>80){
+        strcpy(disk_feeling, "I am almost completely full! ");
+        total_feeling_rate += 2;
+    }
+    else if (disk_percent<=80 & disk_percent>50){
+        strcpy(disk_feeling, "I'm somewhat okay with the disk space. ");
+        total_feeling_rate += 3;
+    }
+    else if (disk_percent<=50 && disk_percent>30){
+        strcpy(disk_feeling, "My disk is perfectly fine! ");
+        total_feeling_rate += 4;
+    }
+    else if (disk_percent<=30 && disk_percent>=0){
+        strcpy(disk_feeling, "My disk is imposibly clean! ");
+        total_feeling_rate += 5;
+    }
+    return disk_feeling;
 }

@@ -6,7 +6,7 @@ all: c
 # Compiles and makes bin if needed
 c: src/main.c src/bat.c
 	mkdir -p bin
-	$(CC) -o bin/howami src/main.c src/bat.c src/ram.c -lm
+	$(CC) -o bin/howami src/main.c src/bat.c src/ram.c src/disk.c -lm
 
 # run
 r: bin/howami
